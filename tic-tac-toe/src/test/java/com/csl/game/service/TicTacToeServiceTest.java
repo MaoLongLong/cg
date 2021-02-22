@@ -1,9 +1,9 @@
-package com.csl.game.ui.service;
+package com.csl.game.service;
 
 import com.csl.game.core.TicTacToeAction;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * @author MaoLongLong

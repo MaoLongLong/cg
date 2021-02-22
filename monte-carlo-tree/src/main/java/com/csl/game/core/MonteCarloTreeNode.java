@@ -71,8 +71,8 @@ public class MonteCarloTreeNode {
 
     public double winRate() {
         int currentPlayer = parent.state.getNextMove();
-        int loses = resultMap.getOrDefault(-1 * currentPlayer, 0);
-        return (double) (visits - loses) / visits;
+        int wins = resultMap.getOrDefault(currentPlayer, 0);
+        return (double) wins / visits;
     }
 
     /**

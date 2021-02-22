@@ -1,10 +1,11 @@
-package com.csl.game.ui.service;
+package com.csl.game.service;
 
 import com.csl.game.core.MonteCarloTreeNode;
 import com.csl.game.core.MonteCarloTreeSearch;
 import com.csl.game.core.TicTacToeAction;
 import com.csl.game.core.TicTacToeState;
 import com.csl.game.model.Consts;
+import lombok.Getter;
 
 /**
  * @author MaoLongLong
@@ -13,6 +14,9 @@ import com.csl.game.model.Consts;
 public class TicTacToeService {
 
     private TicTacToeState state;
+
+    @Getter
+    private double winRate;
 
     public void init() {
         state = new TicTacToeState(Consts.X);
@@ -32,7 +36,8 @@ public class TicTacToeService {
 
     public TicTacToeAction get() {
         MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(state);
-        MonteCarloTreeNode node = mcts.bestAction(2000);
+        MonteCarloTreeNode node = mcts.bestAction(4000);
+        winRate = node.winRate();
         TicTacToeAction action = ((TicTacToeState) node.getState()).getCurrentAction();
         state = state.move(action);
         return action;
