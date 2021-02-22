@@ -36,7 +36,7 @@ public class TicTacToeState extends BaseState {
     public TicTacToeState move(Object o) {
         Assert.isInstanceOf(TicTacToeAction.class, o);
         TicTacToeAction action = (TicTacToeAction) o;
-        int[][] tempBoard = getBoard();
+        int[][] tempBoard = ObjectUtil.cloneByStream(board);
         tempBoard[action.getRow()][action.getCol()] = action.getValue();
         return new TicTacToeState(tempBoard, TicTacToeAction.changeHands(nextMove), action);
     }
@@ -57,10 +57,6 @@ public class TicTacToeState extends BaseState {
             }
         }
         return legalActions;
-    }
-
-    public int[][] getBoard() {
-        return ObjectUtil.cloneByStream(board);
     }
 
     @Override
@@ -101,5 +97,9 @@ public class TicTacToeState extends BaseState {
             }
         }
         return false;
+    }
+
+    public boolean isVisited(int row, int col) {
+        return board[row][col] != 0;
     }
 }

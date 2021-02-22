@@ -23,7 +23,7 @@ public class TicTacToeService {
     }
 
     public boolean isVisited(int row, int col) {
-        return state.getBoard()[row][col] != 0;
+        return state.isVisited(row, col);
     }
 
     public void set(int row, int col) {
